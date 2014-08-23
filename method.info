@@ -28,7 +28,7 @@ getStats                GET /_stats Returns server statistics
                        
 getUtils                GET /_utils Redirects to /_utils/
                        
-*                       GET /_utils/    CouchDB administration interface (Futon)
+********                GET /_utils/    CouchDB administration interface (Futon)
                        
 getUuids                GET /_uuids Generates a list of UUIDs from the server
                        
@@ -60,62 +60,62 @@ copyDbDesignDdoc        COPY /{db}/_design/{ddoc}   Copies the design document
                             
 getDbDesignDdocInfo     GET /{db}/_design/{ddoc}/_info  Returns view index information for the specified design document
                             
-                        GET /{db}/_design/{ddoc}/_list/{func}/{other-ddoc}/{view}   Executes a list function against the view from other design document
-                        POST /{db}/_design/{ddoc}/_list/{func}/{other-ddoc}/{view}  Same as GET method for the related endpoint
+getDbDesignDdocListFuncOtherddocView            GET /{db}/_design/{ddoc}/_list/{func}/{other-ddoc}/{view}   Executes a list function against the view from other design document
+********                POST /{db}/_design/{ddoc}/_list/{func}/{other-ddoc}/{view}  Same as GET method for the related endpoint
                              
-                        GET /{db}/_design/{ddoc}/_list/{func}/{view}    Executes a list function against the view from the same design document
-                        POST /{db}/_design/{ddoc}/_list/{func}/{view}   Same as GET method for the related endpoint
+getDbDesignDdocListFuncView                      GET /{db}/_design/{ddoc}/_list/{func}/{view}    Executes a list function against the view from the same design document
+********                POST /{db}/_design/{ddoc}/_list/{func}/{view}   Same as GET method for the related endpoint
                             
-                        ANY /{db}/_design/{ddoc}/_rewrite/{path}    Rewrites HTTP request for the specified path by using stored routing rules
+********                ANY /{db}/_design/{ddoc}/_rewrite/{path}    Rewrites HTTP request for the specified path by using stored routing rules
                             
-                        GET /{db}/_design/{ddoc}/_show/{func}   Executes a show function against null document
-                        POST /{db}/_design/{ddoc}/_show/{func}  Same as GET method for the related endpoint
+getDbDesignDdocShowFunc GET /{db}/_design/{ddoc}/_show/{func}   Executes a show function against null document
+********                POST /{db}/_design/{ddoc}/_show/{func}  Same as GET method for the related endpoint
                               
-                        GET /{db}/_design/{ddoc}/_show/{func}/{docid}   Executes a show function against the specified document
-                        POST /{db}/_design/{ddoc}/_show/{func}/{docid}  Same as GET method for the related endpoint
+getDbDesignDdocShowFuncDocid                       GET /{db}/_design/{ddoc}/_show/{func}/{docid}   Executes a show function against the specified document
+********                POST /{db}/_design/{ddoc}/_show/{func}/{docid}  Same as GET method for the related endpoint
                             
-                        POST /{db}/_design/{ddoc}/_update/{func}    Executes an update function against the null document
+********                POST /{db}/_design/{ddoc}/_update/{func}    Executes an update function against the null document
                             
-                        PUT /{db}/_design/{ddoc}/_update/{func}/{docid} Executes an update function against the specified document
+********                PUT /{db}/_design/{ddoc}/_update/{func}/{docid} Executes an update function against the specified document
                             
-                        GET /{db}/_design/{ddoc}/_view/{view}   Returns results for the specified stored view
-                        POST /{db}/_design/{ddoc}/_view/{view}  Returns certain rows for the specified stored view
+********                GET /{db}/_design/{ddoc}/_view/{view}   Returns results for the specified stored view
+********                POST /{db}/_design/{ddoc}/_view/{view}  Returns certain rows for the specified stored view
                             
-                        HEAD /{db}/_design/{ddoc}/{attname} Returns bare information in the HTTP Headers for the attachment
-                        GET /{db}/_design/{ddoc}/{attname}  Gets the attachment of a design document
-                        PUT /{db}/_design/{ddoc}/{attname}  Adds an attachment of a design document
-                        DELETE /{db}/_design/{ddoc}/{attname}   Deletes an attachment of a design document
+********                HEAD /{db}/_design/{ddoc}/{attname} Returns bare information in the HTTP Headers for the attachment
+********                GET /{db}/_design/{ddoc}/{attname}  Gets the attachment of a design document
+********                PUT /{db}/_design/{ddoc}/{attname}  Adds an attachment of a design document
+********                DELETE /{db}/_design/{ddoc}/{attname}   Deletes an attachment of a design document
                             
-                        POST /{db}/_ensure_full_commit  Makes sure all uncommitted changes are written and synchronized to the disk
+********                POST /{db}/_ensure_full_commit  Makes sure all uncommitted changes are written and synchronized to the disk
                             
-                        GET /{db}/_local/{docid}    Returns the latest revision of the local document
-                        PUT /{db}/_local/{docid}    Inserts a new version of the local document
-                        DELETE /{db}/_local/{docid} Deletes the local document
-                        COPY /{db}/_local/{docid}   Copies the local document within the same database
+getDbLocalDocid         GET /{db}/_local/{docid}    Returns the latest revision of the local document
+putDbLocalDocid         PUT /{db}/_local/{docid}    Inserts a new version of the local document
+deleteDbLocalDocid      DELETE /{db}/_local/{docid} Deletes the local document
+copyDbLocalDocid        COPY /{db}/_local/{docid}   Copies the local document within the same database
                             
-                        POST /{db}/_missing_revs    By given list of document revisions returns the document revisions that do not exist in the database
+postDbMissingRevs       POST /{db}/_missing_revs    By given list of document revisions returns the document revisions that do not exist in the database
         
-                        POST /{db}/_purge   Purges some historical documents entirely from database history
+postDbPurge             POST /{db}/_purge   Purges some historical documents entirely from database history
                             
-                        POST /{db}/_revs_diff   By given list of document revisions returns differences between the given revisions and ones that are in the database
+postDbRevsDiff          POST /{db}/_revs_diff   By given list of document revisions returns differences between the given revisions and ones that are in the database
                             
-                        GET /{db}/_revs_limit   Returns the limit of historical revisions to store for a single document in the database
-                        PUT /{db}/_revs_limit   Sets the limit of historical revisions to store for a single document in the database
+getDbRevsDiff           GET /{db}/_revs_limit   Returns the limit of historical revisions to store for a single document in the database
+putDbRevsDiff           PUT /{db}/_revs_limit   Sets the limit of historical revisions to store for a single document in the database
                             
-                        GET /{db}/_security Returns the special security object for the database
-                        PUT /{db}/_security Sets the special security object for the database
+getDbSecurity           GET /{db}/_security Returns the special security object for the database
+putDbSecurity           PUT /{db}/_security Sets the special security object for the database
                             
-                        POST /{db}/_temp_view   Executes a given view function for all documents and returns the result
+postDbTempView          POST /{db}/_temp_view   Executes a given view function for all documents and returns the result
                             
-                        POST /{db}/_view_cleanup    Removes view files that are not used by any design document
+postDbTempViewCleanup   POST /{db}/_view_cleanup    Removes view files that are not used by any design document
                             
-                        HEAD /{db}/{docid}  Returns bare information in the HTTP Headers for the document
-                        GET /{db}/{docid}   Returns the document
-                        PUT /{db}/{docid}   Creates a new document or new version of an existing document
-                        DELETE /{db}/{docid}    Deletes the document
-                        COPY /{db}/{docid}  Copies the document within the same database
+headDbDocid             HEAD /{db}/{docid}  Returns bare information in the HTTP Headers for the document
+getDbDocid              GET /{db}/{docid}   Returns the document
+putDbDocid              PUT /{db}/{docid}   Creates a new document or new version of an existing document
+deleteDbDocid           DELETE /{db}/{docid}    Deletes the document
+copyDbDocid             COPY /{db}/{docid}  Copies the document within the same database
                             
-                        HEAD /{db}/{docid}/{attname}    Returns bare information in the HTTP Headers for the attachment
-                        GET /{db}/{docid}/{attname} Gets the attachment of a document
-                        PUT /{db}/{docid}/{attname} Adds an attachment of a document
-                        DELETE /{db}/{docid}/{attname}
+headDbDocid             HEAD /{db}/{docid}/{attname}    Returns bare information in the HTTP Headers for the attachment
+getDbDocid              GET /{db}/{docid}/{attname} Gets the attachment of a document
+putDbDocid              PUT /{db}/{docid}/{attname} Adds an attachment of a document
+deleteDbDocid           DELETE /{db}/{docid}/{attname}

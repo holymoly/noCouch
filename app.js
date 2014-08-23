@@ -442,7 +442,296 @@ var getDbDesignDdocInfo = function(url,db,ddoc){
   });
 };
 
-getWelcome('http://192.168.123.35:5984');
+//********************************************************************
+
+//Executes a list function against the view from other design document
+var getDbDesignDdocListFuncOtherddocView = function(url,db,ddoc,func,otherddoc,view){
+  requestCouch(url,'/' + db + '/_design/' + ddoc + '/_list/' + func + '/' + otherddoc + '/' + view,'GET',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Executes a list function against the view from the same design document
+var getDbDesignDdocListFuncView = function(url,db,ddoc,func,view){
+  requestCouch(url,'/' + db + '/_design/' + ddoc + '/_list/' + func + '/' + view,'GET',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Executes a show function against null document
+var getDbDesignDdocShowFunc = function(url,db,ddoc,func){
+  requestCouch(url,'/' + db + '/_design/' + ddoc + '/_show/' + func,'GET',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Executes a show function against the specified document
+var getDbDesignDdocShowFuncDocid = function(url,db,ddoc,func,docid){
+  requestCouch(url,'/' + db + '/_design/' + ddoc + '/_show/' + func + '/' + docid,'GET',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Returns the latest revision of the local document
+var getDbLocalDocid  = function(url,db,docid){
+  requestCouch(url,'/' + db + '/_local/' + docid,'GET',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Inserts a new version of the local document
+var putDbLocalDocid = function(url,db,docid,data){
+  requestCouch(url,'/' + db + '/_local/' + docid,'PUT',data,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Deletes the local document
+var deleteDbLocalDocid = function(url,db,docid){
+  requestCouch(url,'/' + db + '/_local/' + docid,'DELETE',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Copies the local document within the same database
+var copyDbLocalDocid = function(url,db,docid,destination){
+  requestCouch(url,'/' + db + '/_local/' + docid,'COPY',undefined,destination,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+// By given list of document revisions returns the document revisions that do not exist in the database
+var postDbMissingRevs = function(url,db){
+  requestCouch(url,'/' + db + '/_missing_revs','POST',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+// Purges some historical documents entirely from database history
+var postDbPurge = function(url,db,data){
+  requestCouch(url,'/' + db + '/_purge','POST',data,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+// By given list of document revisions returns differences between the given revisions and ones that are in the database
+var postDbRevsDiff = function(url,db,data){
+  requestCouch(url,'/' + db + '/_revs_diff','POST',data,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Returns the limit of historical revisions to store for a single document in the database
+var getDbRevsDiff  = function(url,db){
+  requestCouch(url,'/' + db + '/_revs_limit','GET',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Sets the limit of historical revisions to store for a single document in the database
+var putDbRevsDiff = function(url,db,data){
+  requestCouch(url,'/' + db + '/_revs_limit','PUT',data,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Returns the special security object for the database
+var getDbSecurity  = function(url,db){
+  requestCouch(url,'/' + db + '/_security','GET',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Sets the special security object for the database
+var putDbSecurity = function(url,db,data){
+  requestCouch(url,'/' + db + '/_security','PUT',data,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Executes a given view function for all documents and returns the result
+var postDbTempView = function(url,db,data){
+  requestCouch(url,'/' + db + '/_temp_view','POST',data,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Removes view files that are not used by any design document
+var postDbTempViewCleanup = function(url,db,data){
+  requestCouch(url,'/' + db + '/_temp_view_cleanup','POST',data,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+// Returns bare information in the HTTP Headers for the document
+var headDbDocid = function(url,db,docid){
+  requestCouch(url,'/' + db + '/' + docid,'HEAD',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Returns the special security object for the database
+var getDbDocid = function(url,db,docid){
+  requestCouch(url,'/' + db + '/' + docid,'GET',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Creates a new document or new version of an existing document
+var putDbDocid = function(url,db,docid,data){
+  requestCouch(url,'/' + db + '/' + docid,'PUT',data,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Deletes the document
+var deleteDbDocid = function(url,db,docid){
+  requestCouch(url,'/' + db + '/' + docid,'DELETE',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Copies the document within the same database
+var copyDbDocid = function(url,db,docid,destination){
+  requestCouch(url,'/' + db + '/' + ddoc,'COPY',undefined,destination,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+
+// Returns bare information in the HTTP Headers for the attachment
+var headDbDocidAttname = function(url,db,docid,attname){
+  requestCouch(url,'/' + db + '/' + docid,'HEAD',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Gets the attachment of a document
+var getDbDocidAttname = function(url,db,docid,attname){
+  requestCouch(url,'/' + db + '/' + docid,'GET',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Adds an attachment of a document
+var putDbDocidAttname = function(url,db,docid,data,attname){
+  requestCouch(url,'/' + db + '/' + docid,'PUT',data,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//Deletes the document attachment
+var deleteDbDocidAttname = function(url,db,docid,attname){
+  requestCouch(url,'/' + db + '/' + docid,'DELETE',undefined,undefined,function(err,response){
+    if (err) {
+      throw err;
+    }else{
+      console.log(response);
+    }
+  });
+};
+
+//getWelcome('http://192.168.123.35:5984');
 //getActiveTasks('http://192.168.123.35:5984');
 //getAllDbs('http://192.168.123.35:5984');
 //getConfig('http://192.168.123.35:5984');
@@ -479,3 +768,4 @@ getWelcome('http://192.168.123.35:5984');
 //deleteDbDesignDdoc('http://root:relax@192.168.123.35:5984','test1','example?rev=3-5dac715cb734d6331128995ab3094fb7');
 //copyDbDesignDdoc('http://192.168.123.35:5984','test1','example','example2');
 //getDbDesignDdocInfo('http://192.168.123.35:5984','test1','example');
+getDbDocid('http://192.168.123.35:5984','test1','213af4ae6f7b409bedc059859900aba8');
