@@ -7,7 +7,7 @@ function requestCouch(url,type,method,data,destination,cb){
   var contentLength = 0;
   if(data !== undefined){
     data = JSON.stringify(data);
-    var contentLength = data.length;
+    var contentLength = Buffer.byteLength(data, 'utf8');
   }
   //Returns the welcome message and version information
   request({
